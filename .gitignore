@@ -1,0 +1,40 @@
+# Secrets — never commit
+.env
+.env.*
+!.env.example
+!.env.production.example
+auth.json
+*.pem
+id_rsa
+id_rsa.pub
+*.p12
+*.pfx
+
+# Dependencies
+node_modules/
+vendor/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.cursor/
+*.log
+
+# Local databases & Laravel runtime
+*.sqlite
+*.sqlite-journal
+tournament-backend/storage/*.key
+tournament-backend/public/storage
+tournament-backend/public/hot
+tournament-backend/public/build
+tournament-backend/storage/pail
+.phpunit.result.cache
+.phpunit.cache
+.phpactor.json
+
+# Build / cache
+dist/
+Homestead.json
+Homestead.yaml

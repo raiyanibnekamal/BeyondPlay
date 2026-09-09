@@ -1,0 +1,93 @@
+﻿<!doctype html>
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BeyondPlay | Verify Email</title>
+<link rel="stylesheet" href="assets/css/app.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="stylesheet" href="assets/css/arena-ui.css">
+</head>
+<body>
+<section class="space">
+<div class="container py-5">
+<h1 class="breadcumb-title mb-4">Email verification</h1>
+<p id="arena-verify-status" class="text-muted">Verifying your email…</p>
+<p class="mt-4"><a href="login.html" class="th-btn">Go to login</a></p>
+</div>
+</section>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/api.js"></script>
+<script>
+(function () {
+  var status = document.getElementById("arena-verify-status");
+  var path = window.location.pathname.replace(/\\/g, "/");
+  var marker = "/auth/verify-email/";
+  var idx = path.indexOf(marker);
+  if (idx < 0) {
+    var params = new URLSearchParams(window.location.search);
+    var id = params.get("id");
+    var hash = params.get("hash");
+    var expires = params.get("expires");
+    var signature = params.get("signature");
+    if (!id || !hash) {
+      status.textContent = "Invalid verification link.";
+      return;
+    }
+    var base = (window.api && window.api.base) || "http://127.0.0.1:8000/api/v1";
+    var url =
+      base +
+      "/auth/verify-email/" +
+      encodeURIComponent(id) +
+      "/" +
+      encodeURIComponent(hash) +
+      "?expires=" +
+      encodeURIComponent(expires || "") +
+      "&signature=" +
+      encodeURIComponent(signature || "");
+    fetch(url, { headers: { Accept: "application/json" } })
+      .then(function (r) {
+        return r.json().then(function (d) {
+          return { ok: r.ok, data: d };
+        });
+      })
+      .then(function (res) {
+        status.textContent =
+          (res.data && res.data.message) ||
+          (res.ok ? "Email verified." : "Verification failed.");
+        status.style.color = res.ok ? "var(--theme-color)" : "#ff6b6b";
+      })
+      .catch(function () {
+        status.textContent = "Could not reach the API.";
+        status.style.color = "#ff6b6b";
+      });
+    return;
+  }
+  var rest = path.slice(idx + marker.length);
+  var parts = rest.split("/");
+  var userId = parts[0];
+  var hash = parts[1];
+  var qs = window.location.search || "";
+  var base = (window.api && window.api.base) || "http://127.0.0.1:8000/api/v1";
+  fetch(base + "/auth/verify-email/" + userId + "/" + hash + qs, {
+    headers: { Accept: "application/json" },
+  })
+    .then(function (r) {
+      return r.json().then(function (d) {
+        return { ok: r.ok, data: d };
+      });
+    })
+    .then(function (res) {
+      status.textContent =
+        (res.data && res.data.message) ||
+        (res.ok ? "Email verified." : "Verification failed.");
+      status.style.color = res.ok ? "var(--theme-color)" : "#ff6b6b";
+    })
+    .catch(function () {
+      status.textContent = "Could not reach the API.";
+      status.style.color = "#ff6b6b";
+    });
+})();
+</script>
+</body>
+</html>

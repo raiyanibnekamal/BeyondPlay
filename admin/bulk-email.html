@@ -1,0 +1,32 @@
+﻿<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>BeyondPlay Admin — Bulk Email</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/fontawesome.min.css"><link rel="stylesheet" href="admin.css"></head><body class="arena-admin" data-admin-page="bulk-email"><div class="arena-admin-layout"><aside class="arena-admin-sidebar">
+<div class="arena-admin-logo"><a href="index.html"><img src="../assets/img/logo.svg" alt="BeyondPlay"></a><span>Admin Panel</span></div>
+<ul class="arena-admin-nav">
+<li><span class="nav-label">Main</span></li>
+<li><a href="index.html" data-nav="dashboard"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+<li><span class="nav-label">Tournaments</span></li>
+<li><a href="tournaments.html" data-nav="tournaments"><i class="fas fa-trophy"></i> Manage Tournaments</a></li>
+<li><a href="tournament-edit.html" data-nav="tournament-edit" class="nav-sub"><i class="fas fa-plus"></i> Add New</a></li>
+<li><span class="nav-label">Matches</span></li>
+<li><a href="matches.html" data-nav="matches"><i class="fas fa-gamepad"></i> Manage Matches</a></li>
+<li><a href="match-edit.html" data-nav="match-edit" class="nav-sub"><i class="fas fa-pen"></i> Enter Scores</a></li>
+<li><span class="nav-label">Community</span></li>
+<li><a href="users.html" data-nav="users"><i class="fas fa-users"></i> Users</a></li>
+<li><a href="games.html" data-nav="games"><i class="fas fa-dice"></i> Games</a></li>
+<li><a href="game-suggestions.html" data-nav="game-suggestions"><i class="fas fa-lightbulb"></i> Game Suggestions <span class="badge-count">4</span></a></li>
+<li><a href="disputes.html" data-nav="disputes"><i class="fas fa-gavel"></i> Disputes <span class="badge-count">2</span></a></li>
+<li><span class="nav-label">Content</span></li>
+<li><a href="blog.html" data-nav="blog"><i class="fas fa-newspaper"></i> Blog</a></li>
+<li><a href="banners.html" data-nav="banners"><i class="fas fa-bullhorn"></i> Banners</a></li>
+<li><a href="sponsors.html" data-nav="sponsors"><i class="fas fa-handshake"></i> Sponsors</a></li>
+<li><span class="nav-label">Shop</span></li>
+<li><a href="products.html" data-nav="products"><i class="fas fa-box"></i> Products</a></li>
+<li><a href="orders.html" data-nav="orders"><i class="fas fa-shopping-bag"></i> Orders</a></li>
+<li><a href="coupons.html" data-nav="coupons"><i class="fas fa-tag"></i> Coupons</a></li>
+<li><span class="nav-label">System</span></li>
+<li><a href="bulk-email.html" data-nav="bulk-email"><i class="fas fa-envelope"></i> Bulk Email</a></li>
+<li><a href="analytics.html" data-nav="analytics"><i class="fas fa-chart-pie"></i> Analytics</a></li>
+<li><a href="notifications.html" data-nav="notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+<li><a href="settings.html" data-nav="settings"><i class="fas fa-cog"></i> Settings</a></li>
+</ul>
+<div class="arena-admin-logout"><a href="../login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+</aside><div class="arena-admin-main"><header class="arena-admin-topbar"><h1>Bulk Email</h1><div class="arena-admin-topbar-actions"><span class="arena-admin-user"><i class="fas fa-user-shield me-1"></i> admin@arena.gg</span><a href="../login.html" class="arena-admin-btn arena-admin-btn-secondary arena-admin-btn-sm">Logout</a></div></header><div class="arena-admin-content"><div class="arena-admin-card"><form id="arena-bulk-email-form" action="#" method="post"><div style="margin-bottom:16px"><label>Subject *</label><input type="text" class="arena-admin-input" name="subject" style="width:100%" required></div><div style="margin-bottom:16px"><label>Target Audience</label><div class="arena-admin-radio-group"><label><input type="radio" name="audience" value="all" checked> All Users</label><label><input type="radio" name="audience" value="active"> Active Users Only</label><label><input type="radio" name="audience" value="newsletter"> Newsletter Subscribers Only</label></div></div><div style="margin-bottom:16px"><label>Body *</label><textarea class="arena-admin-textarea" name="body" style="min-height:200px" required></textarea></div><div style="display:flex;gap:12px;flex-wrap:wrap"><button type="button" class="arena-admin-btn arena-admin-btn-secondary" id="arena-bulk-preview">Preview</button><button type="button" class="arena-admin-btn arena-admin-btn-primary" id="arena-bulk-send" disabled>Send Email</button></div><div class="arena-admin-preview-box" id="arena-email-preview"><h4 data-preview-subject></h4><p data-preview-body style="white-space:pre-wrap"></p></div></form></div><div class="arena-admin-card"><h2>Send History</h2><div class="arena-admin-table-wrap"><table class="arena-admin-table"><thead><tr><th>Subject</th><th>Target</th><th>Sent To</th><th>Sent At</th><th>Status</th></tr></thead><tbody><tr><td>Winter Cup Registration Open</td><td>All Users</td><td>2,840</td><td>Dec 1, 2024</td><td><span class="arena-admin-badge arena-admin-badge-completed">Sent</span></td></tr><tr><td>New Shop Items Available</td><td>Newsletter</td><td>638</td><td>Nov 15, 2024</td><td><span class="arena-admin-badge arena-admin-badge-completed">Sent</span></td></tr></tbody></table></div></div></div></div></div><script src="../assets/js/config.js"></script><script src="../assets/js/arena-admin-guard.js"></script><script src="../assets/js/api.js"></script><script src="../assets/js/arena-escape.js"></script><script src="../assets/js/admin-connect.js"></script><script src="../assets/js/admin-connect-extra.js"></script><script src="admin.js"></script></body></html>

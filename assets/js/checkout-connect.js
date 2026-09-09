@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
 
  * Checkout — place order via Arena API (Stripe when configured).

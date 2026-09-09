@@ -1,4 +1,6 @@
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;

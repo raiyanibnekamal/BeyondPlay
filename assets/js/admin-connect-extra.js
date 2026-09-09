@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
  * Arena admin — extended CRUD (D1–D4, blog, games, notifications).
  * Requires admin-connect.js (requireAdmin).

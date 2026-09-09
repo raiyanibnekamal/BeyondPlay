@@ -1,4 +1,6 @@
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;

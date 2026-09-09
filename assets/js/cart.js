@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
  * Arena localStorage cart — synced to server at checkout via Order API.
  * Cart state is browser-local until place order; use the same browser to checkout.

@@ -1,4 +1,6 @@
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 /**
  * STEP 19 smoke test: shop orders, coupons, wishlist price drop.

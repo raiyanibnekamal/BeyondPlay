@@ -1,0 +1,41 @@
+BeyondPlay (Arena) — Proprietary License
+All rights reserved.
+
+Copyright (c) 2026 MD RAIYAN IBNE KAMAL
+https://github.com/raiyanibnekamal
+
+SPDX-License-Identifier: LicenseRef-Proprietary
+
+This software and all associated files (the “Software”) are the exclusive
+property of MD RAIYAN IBNE KAMAL.
+
+WHAT IS ALLOWED
+  You may view this repository on GitHub.
+
+WHAT IS NOT ALLOWED
+  Viewing does not grant any other rights. Without the copyright holder’s
+  prior written permission, you may not:
+
+  - copy, clone, fork, download for reuse, or redistribute the Software
+  - modify, merge, publish, sublicense, or sell copies
+  - use the Software, in whole or in part, in any other product or service
+  - run it as your own live site or commercial project
+  - reverse engineer, except where applicable law forbids this restriction
+  - remove or alter this notice, copyright, or ownership marks
+
+The original repository remains under the sole control of
+MD RAIYAN IBNE KAMAL. Other people cannot push, merge, or administer it.
+
+Unauthorized use, copying, or distribution is copyright infringement and may
+result in civil and/or criminal liability.
+
+THIRD-PARTY COMPONENTS
+  Open-source libraries (for example Laravel and other PHP/JS packages)
+  remain under their own licenses. Those licenses do not grant any rights to
+  the original BeyondPlay / Arena application code, design, markup, branding,
+  API, or documentation in this repository.
+
+  See tournament-backend/composer.lock for PHP dependency licenses.
+
+CONTACT
+  https://github.com/raiyanibnekamal

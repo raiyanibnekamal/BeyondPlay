@@ -1,2 +1,10 @@
-# This repository is owned by MD RAIYAN IBNE KAMAL.
+# Ownership: MD RAIYAN IBNE KAMAL
+# https://github.com/raiyanibnekamal
+# All paths require review from the owner when branch protection
+# has “Require review from Code Owners” enabled.
+
 * @raiyanibnekamal
+/tournament-backend/ @raiyanibnekamal
+/assets/js/ @raiyanibnekamal
+/admin/ @raiyanibnekamal
+/.github/ @raiyanibnekamal

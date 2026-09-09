@@ -1,4 +1,6 @@
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 /**
  * Demo user register → login → feature smoke test (simulates frontend origin).

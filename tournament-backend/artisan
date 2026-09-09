@@ -1,5 +1,7 @@
 #!/usr/bin/env php
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 use Illuminate\Foundation\Application;
 use Symfony\Component\Console\Input\ArgvInput;

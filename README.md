@@ -1,14 +1,46 @@
-# Arena — Esports Tournament Platform
+# BeyondPlay (Arena)
 
-**View on GitHub only. Proprietary — all rights reserved.** Copyright © 2026 [MD RAIYAN IBNE KAMAL](https://github.com/raiyanibnekamal). You may look at this project; you may not copy, reuse, or run it as your own. See [LICENSE.md](LICENSE.md).
+Full-stack esports tournament platform: custom HTML/CSS/JS frontend and a Laravel 12 API.
 
-Original full-stack esports tournament platform: custom HTML/CSS/JS frontend and Laravel 12 API (`tournament-backend/`).
+**View on GitHub only. Proprietary — all rights reserved.**  
+Copyright © 2026 [MD RAIYAN IBNE KAMAL](https://github.com/raiyanibnekamal). You may look at this project; you may not copy, reuse, or run it as your own. See [LICENSE](LICENSE).
 
-**Documentation:** [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) · [ARENA_SPEC.md](ARENA_SPEC.md) · [LICENSE.md](LICENSE.md) · [NEXT_STEPS.md](NEXT_STEPS.md)
+**Docs:** [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) · [ARENA_SPEC.md](ARENA_SPEC.md) · [DEPLOY.md](DEPLOY.md) · [CHANGELOG.md](CHANGELOG.md)
 
-## Quick start
+---
 
-### Backend
+## Features
+
+- Player auth (register, login, password reset) and admin panel
+- Tournaments, brackets, matches, standings, check-in, predictions
+- Teams, friends, PvP challenges, notifications, activity feed
+- Shop, cart, checkout, coupons, wishlist, orders
+- Blog, banners, sponsors, contact, newsletter
+- Rate-limited REST API (`/api/v1`) with Sanctum
+
+### Usage examples
+
+```bash
+# API (from tournament-backend)
+php artisan serve
+# → http://127.0.0.1:8000/api/v1
+
+# Frontend (from repo root)
+.\serve-frontend.ps1
+# → http://127.0.0.1:5500/index.html
+
+# Tests
+cd tournament-backend
+php artisan test
+```
+
+Open **http://127.0.0.1:5500/index.html** in a browser (not `file://`).
+
+---
+
+## Installation & Usage
+
+### 1. Backend
 
 ```bash
 cd tournament-backend
@@ -17,167 +49,119 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-**MySQL (XAMPP):** start Apache/MySQL in XAMPP, create DB `tournament_db` (or run `CREATE DATABASE tournament_db;`), set `DB_CONNECTION=mysql` in `.env`, then:
+**MySQL (XAMPP):** start Apache/MySQL, create database `tournament_db`, set `DB_CONNECTION=mysql` in `.env`, then:
 
 ```bash
 php artisan migrate:fresh --seed
 php artisan serve
 ```
 
-**SQLite (no XAMPP):** set `DB_CONNECTION=sqlite` in `.env`, then `php artisan migrate --seed` and `php artisan serve`.
+**SQLite:** set `DB_CONNECTION=sqlite` in `.env`, then `php artisan migrate --seed` and `php artisan serve`.
 
-API base URL: `http://127.0.0.1:8000/api/v1`
-
-After `php artisan db:seed`, the console prints **one-time** passwords for:
+After seeding, the console prints one-time passwords for:
 
 - Admin: `admin@arena.gg`
 - Player: `player@arena.gg`
 
 Optional: set `ADMIN_SEED_PASSWORD` and `PLAYER_SEED_PASSWORD` in `.env` before seeding.
 
-### Frontend
+### 2. Frontend
 
-**Do not double-click HTML files** (`file:///...`). Browsers block manifests, SVG backgrounds, and API calls on the `file://` protocol (you will see CORS / `origin 'null'` errors).
-
-Serve the project root over HTTP, then open the site in the browser:
+Do **not** double-click HTML files. Serve the project root over HTTP:
 
 ```powershell
-# Terminal 1 — API (from tournament-backend)
+# Terminal 1 — API
+cd tournament-backend
 php artisan serve
 
-# Terminal 2 — static frontend (from Tournament project root)
+# Terminal 2 — frontend (repo root)
 .\serve-frontend.ps1
 ```
 
-Open **http://127.0.0.1:5500/index.html** (not `file:///D:/...`).
+Then open **http://127.0.0.1:5500/index.html**.
 
-Alternative: `php -S 127.0.0.1:5500 -t .` from the `Tournament` folder, or VS Code **Live Server** on port 5500.
+Local API is `http://127.0.0.1:8000/api/v1` (auto from `api.js` on port 5500). Production: set `ARENA_API_BASE` in `assets/js/config.js`.
 
-Local API: `http://127.0.0.1:8000/api/v1` (auto from `api.js` when using `:5500`). Production: set `ARENA_API_BASE` in `assets/js/config.js`.
-
-For page analytics, the frontend sends `X-Arena-Page` on each request (via `arena-connect.js`).
-
-### Queue (bulk email)
+### 3. Queue & digest (optional)
 
 ```bash
 php artisan queue:work
-```
-
-### Weekly digest
-
-Scheduled Mondays at 08:00 (see `routes/console.php`). Manual run:
-
-```bash
 php artisan arena:weekly-digest
 ```
 
-## Environment variables (backend)
+### Environment (backend)
 
 | Variable | Purpose |
 |----------|---------|
-| `APP_DEBUG` | Set `false` in production |
+| `APP_DEBUG` | `false` in production |
 | `APP_URL` | Laravel app URL |
-| `DB_*` | Database (MySQL `tournament_db` via XAMPP; SQLite optional) |
+| `DB_*` | MySQL `tournament_db` or SQLite |
 | `MAIL_*` | Order confirmations, digests, bulk email |
 | `QUEUE_CONNECTION` | `database` or `sync` for dev |
-| `FRONTEND_URL` | Password reset links; production site URL |
-| `CORS_ALLOWED_ORIGINS` | Dev: `http://127.0.0.1:5500,http://localhost:5500` — Prod: your domain only (deny-all if unset) |
-| `FRONTEND_URL` | `http://127.0.0.1:5500` (dev) or production site URL |
+| `FRONTEND_URL` | Password-reset links; site URL |
+| `CORS_ALLOWED_ORIGINS` | Dev: `http://127.0.0.1:5500,http://localhost:5500` — prod: your domain only |
 
-`.env` is listed in `.gitignore` — never commit secrets.
+`.env` is gitignored — never commit secrets.
 
-## Email (password reset, orders)
+Avatar uploads: run `php artisan storage:link` once.
 
-| Environment | Setup |
-|-------------|--------|
-| **Local dev** | `MAIL_MAILER=log` — reset links appear in `tournament-backend/storage/logs/laravel.log` |
-| **Dev inbox** | [Mailtrap](https://mailtrap.io) — set `MAIL_MAILER=smtp` and Mailtrap credentials in `.env` |
-| **Production** | Real SMTP (`MAIL_HOST`, `MAIL_USERNAME`, `MAIL_PASSWORD`) |
+Production deploy: [DEPLOY.md](DEPLOY.md). QA: [QA_CHECKLIST.md](QA_CHECKLIST.md).
 
-Set `FRONTEND_URL=http://127.0.0.1:5500` (dev) or `https://yourdomain.com` (prod). Reset emails link to `{FRONTEND_URL}/reset-password.html?token=...&email=...`.
+---
 
-Avatar uploads require `php artisan storage:link` once (serves `storage/app/public`).
+## License
 
-## Production deployment
+**Proprietary — all rights reserved** (`LicenseRef-Proprietary`). This is **not** MIT, Apache-2.0, or GPL.
 
-See **[DEPLOY.md](DEPLOY.md)** for server setup, queue/cron, and post-deploy checks.  
-Before go-live, run **[QA_CHECKLIST.md](QA_CHECKLIST.md)** and **[NEXT_STEPS.md](NEXT_STEPS.md)**. Optional later: Stripe payments, Pusher realtime.
+| Allowed | Not allowed |
+|---------|-------------|
+| View this repo on GitHub | Copy, reuse, sell, or run as your own site |
+| | Fork-for-reuse, redistribute, or remove copyright |
 
-## Automated tests
+Only the owner can change this repository. See [LICENSE](LICENSE) and [LICENSE.md](LICENSE.md).
 
-```bash
-cd tournament-backend
-php artisan test
-php tests/e2e_full_test.php   # manual smoke (API must be running)
-```
+---
 
-## API overview
+## Author
 
-- **Auth:** `/auth/register`, `/auth/login`, `/auth/logout`, `/auth/me`
-- **Tournaments:** list, detail, register, bracket, matches, standings, predictions
-- **Social:** friends, PvP challenges, notifications, activity feed
-- **Shop:** products, coupons, orders, wishlist
-- **Public:** `/banners/active`, `/sponsors`, `/contact`, `/newsletter/subscribe`
-- **Admin:** users, games, coupons, blog, contact inbox, tournaments, matches, disputes, products, orders, banners, sponsors, settings, stats, notifications, bulk email, analytics
+**Author: MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal**
 
-Full route list: `php artisan route:list --path=api/v1`
+- GitHub: [@raiyanibnekamal](https://github.com/raiyanibnekamal)
+- Email: [raiyanibnekamal@gmail.com](mailto:raiyanibnekamal@gmail.com)
+- Repository: [github.com/raiyanibnekamal/BeyondPlay](https://github.com/raiyanibnekamal/BeyondPlay)
 
-## Frontend pages
+Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal  
+`SPDX-License-Identifier: LicenseRef-Proprietary`
 
-- Public: `index.html`, `tournament.html`, `tournament-details.html`, `shop.html`, `login.html`, `register.html`, …
-- User dashboard: `my-profile.html`, `my-tournaments.html`, `my-orders.html`, …
-- Admin: `admin/*.html` (20 pages)
+---
 
-## JS integration
+## Contribution guideline
 
-- `assets/js/config.js` — API URL + cookie-auth flag (load before `api.js`)
-- `assets/js/api.js` — API client (Bearer local / HttpOnly cookie in prod)
-- `assets/js/arena-connect.js` — Public pages, auth, tournaments, shop, contact
-- `assets/js/user-connect.js` — User dashboard pages
-- `assets/js/admin-connect.js` + `admin-connect-extra.js` — Full admin panel
-- `assets/js/checkout-connect.js`, `blog-connect.js`, `tournament-connect.js`
-- `assets/js/cart.js`, `assets/js/validation.js`, `assets/js/bracket.js`
+This project is **proprietary**. Unsolicited pull requests are not accepted.
 
-**Scope:** Full MVP (auth, tournaments, shop, admin, social). Not included: Stripe, Pusher, site search API. See [DEVELOPER_GUIDE.md — Section 1b](DEVELOPER_GUIDE.md#1b-functionality--scope-mvp).
+- Do not fork this repo to republish or reuse the code.
+- Bug reports or license questions: contact the author via GitHub.
+- Collaborators (if any) must be invited by the owner; `CODEOWNERS` requires review from [@raiyanibnekamal](https://github.com/raiyanibnekamal).
 
-401 responses on authenticated routes redirect to `login.html`.
+See [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
 
 ## Project structure
 
 ```
-Tournament/
-├── assets/           # CSS, JS, images
-├── admin/            # Admin HTML pages
-├── *.html            # Public & user pages
-├── tournament-backend/
-│   ├── app/
-│   ├── database/migrations/
-│   └── routes/api.php
-├── ARENA_SPEC.md
+BeyondPlay/
+├── assets/                 # CSS, JS, images
+├── admin/                  # Admin HTML
+├── *.html                  # Public & player pages
+├── tournament-backend/     # Laravel 12 API
+├── LICENSE
 ├── LICENSE.md
-└── NEXT_STEPS.md
-```
-
-## API tests
-
-With `php artisan serve` running:
-
-```bash
-cd tournament-backend
-php tests/e2e_full_test.php
-php tests/step20_final_test.php
+└── CHANGELOG.md
 ```
 
 ## Security
 
-See **[DEVELOPER_GUIDE.md — Section 8](DEVELOPER_GUIDE.md#8-security)** for full details (auth, admin guard, rate limits, gaps, production checklist).
-
-Quick summary:
-
 - Sanctum + bcrypt + admin middleware + API rate limits
-- Security pass documented in [PRODUCTION_SECURITY.md](PRODUCTION_SECURITY.md)
-- Production: HTTPS, CORS domain lock, `APP_DEBUG=false`, rotate seed passwords
-
-## License
-
-**Proprietary — all rights reserved.** This repository is public so others can **view** it. Only the owner can change this repo. You may not copy, fork-for-reuse, redistribute, or run this codebase without written permission from **MD RAIYAN IBNE KAMAL** ([@raiyanibnekamal](https://github.com/raiyanibnekamal)). See [LICENSE.md](LICENSE.md).
+- Details: [DEVELOPER_GUIDE.md — Section 8](DEVELOPER_GUIDE.md#8-security) and [PRODUCTION_SECURITY.md](PRODUCTION_SECURITY.md)
+- Production: HTTPS, CORS lock, `APP_DEBUG=false`, rotate seed passwords

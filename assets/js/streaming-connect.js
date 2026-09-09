@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
  * Live streaming page — loads matches with stream_url from API.
  */

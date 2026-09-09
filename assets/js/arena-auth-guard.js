@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
  * Redirect to login when a protected page is opened without auth.
  * Load after api.js.

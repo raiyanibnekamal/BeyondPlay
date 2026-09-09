@@ -1,3 +1,6 @@
+/* Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+ * SPDX-License-Identifier: LicenseRef-Proprietary
+ */
 /**
  * Stripe PaymentIntents — shop checkout & tournament entry fees.
  * Requires api.js. Loads Stripe.js when STRIPE_KEY is configured on the API.

@@ -1,4 +1,6 @@
 <?php
+// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+// SPDX-License-Identifier: LicenseRef-Proprietary
 
 $base = 'http://127.0.0.1:8000/api/v1';
 $email = 'newuser'.random_int(10000, 99999).'@arena.test';

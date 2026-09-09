@@ -3,6 +3,8 @@
 Copyright © 2026 **MD RAIYAN IBNE KAMAL** ([@raiyanibnekamal](https://github.com/raiyanibnekamal)).  
 All rights reserved.
 
+`SPDX-License-Identifier: LicenseRef-Proprietary`
+
 This software and all associated files (the “Software”) are the exclusive
 property of MD RAIYAN IBNE KAMAL.
 

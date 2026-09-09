@@ -6,17 +6,24 @@ All rights reserved.
 This software and all associated files (the “Software”) are the exclusive
 property of MD RAIYAN IBNE KAMAL.
 
-## No permission granted
+## What is allowed
 
-The Software is **proprietary and confidential**. No license is granted to any
-third party. Without the copyright holder’s **prior written permission**, you
-may not:
+You may **view** this repository on GitHub.
 
-- copy, clone, fork, or redistribute the Software
+## What is not allowed
+
+Viewing does **not** grant any other rights. Without the copyright holder’s
+**prior written permission**, you may not:
+
+- copy, clone, fork, download for reuse, or redistribute the Software
 - modify, merge, publish, sublicense, or sell copies
 - use the Software, in whole or in part, in any other product or service
+- run it as your own live site or commercial project
 - reverse engineer, except where applicable law forbids this restriction
 - remove or alter this notice, copyright, or ownership marks
+
+The original repository on GitHub remains under the sole control of
+MD RAIYAN IBNE KAMAL. Other people cannot push, merge, or administer it.
 
 Unauthorized use, copying, or distribution is copyright infringement and may
 result in civil and/or criminal liability.

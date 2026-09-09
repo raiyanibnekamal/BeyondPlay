@@ -1,6 +1,6 @@
 # Arena — Esports Tournament Platform
 
-**Private proprietary software.** Copyright © 2026 [MD RAIYAN IBNE KAMAL](https://github.com/raiyanibnekamal). All rights reserved. See [LICENSE.md](LICENSE.md).
+**View on GitHub only. Proprietary — all rights reserved.** Copyright © 2026 [MD RAIYAN IBNE KAMAL](https://github.com/raiyanibnekamal). You may look at this project; you may not copy, reuse, or run it as your own. See [LICENSE.md](LICENSE.md).
 
 Original full-stack esports tournament platform: custom HTML/CSS/JS frontend and Laravel 12 API (`tournament-backend/`).
 
@@ -180,4 +180,4 @@ Quick summary:
 
 ## License
 
-**Proprietary — all rights reserved.** This repository is private. You may not copy, redistribute, or reuse this codebase without written permission from **MD RAIYAN IBNE KAMAL** ([@raiyanibnekamal](https://github.com/raiyanibnekamal)). See [LICENSE.md](LICENSE.md).
+**Proprietary — all rights reserved.** This repository is public so others can **view** it. Only the owner can change this repo. You may not copy, fork-for-reuse, redistribute, or run this codebase without written permission from **MD RAIYAN IBNE KAMAL** ([@raiyanibnekamal](https://github.com/raiyanibnekamal)). See [LICENSE.md](LICENSE.md).

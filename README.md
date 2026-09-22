@@ -7,6 +7,18 @@ Copyright © 2026 [MD RAIYAN IBNE KAMAL](https://github.com/raiyanibnekamal). Yo
 
 **Docs:** [DEVELOPER_GUIDE.md](DEVELOPER_GUIDE.md) · [ARENA_SPEC.md](ARENA_SPEC.md) · [DEPLOY.md](DEPLOY.md) · [CHANGELOG.md](CHANGELOG.md)
 
+## Repository status and protection
+
+This GitHub repository is the canonical source for BeyondPlay. `main` is
+owner-controlled through `.github/CODEOWNERS`; repository administrators must
+also enable branch protection, required owner review, secret scanning, and
+push protection in GitHub settings.
+
+No production frontend or API URL is configured in this checkout. The
+frontend still points at a safe placeholder until a real domain and deployed
+Laravel API are provisioned. Do not describe the project as live until the
+checks in [DEPLOY.md](DEPLOY.md) pass against those services.
+
 ---
 
 ## Features
@@ -163,5 +175,6 @@ BeyondPlay/
 ## Security
 
 - Sanctum + bcrypt + admin middleware + API rate limits
+- Private vulnerability reports: [SECURITY.md](SECURITY.md)
 - Details: [DEVELOPER_GUIDE.md — Section 8](DEVELOPER_GUIDE.md#8-security) and [PRODUCTION_SECURITY.md](PRODUCTION_SECURITY.md)
 - Production: HTTPS, CORS lock, `APP_DEBUG=false`, rotate seed passwords

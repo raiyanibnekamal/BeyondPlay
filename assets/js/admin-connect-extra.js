@@ -88,7 +88,7 @@
             (b.is_active ? "Active" : "Off") +
             '</td><td><button type="button" class="arena-admin-btn arena-admin-btn-sm arena-del-banner" data-id="' +
             b.id +
-            '">Delete</button></td></tr>"
+            '">Delete</button></td></tr>'
           );
         })
         .join("");
@@ -198,7 +198,7 @@
             p.id +
             '">Publish</button> <button type="button" class="arena-del-post" data-id="' +
             p.id +
-            '">Delete</button></td></tr>"
+            '">Delete</button></td></tr>'
           );
         })
         .join("");
@@ -313,7 +313,7 @@
             esc(g.status) +
             '</td><td><button type="button" class="arena-del-game" data-id="' +
             g.id +
-            '">Delete</button></td></tr>"
+            '">Delete</button></td></tr>'
           );
         })
         .join("");

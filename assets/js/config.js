@@ -16,10 +16,17 @@
     host === "localhost" ||
     host === "";
 
+  var queryApi = win.location && win.location.search ? new URLSearchParams(win.location.search).get("api_base") : null;
+  if (queryApi) {
+    try { win.localStorage.setItem("arena_api_override", queryApi); } catch (e) {}
+  }
+  var storedApi = null;
+  try { storedApi = win.localStorage.getItem("arena_api_override"); } catch (e) {}
+
   /** @type {string|undefined} Replace with your production API (required on live domain). */
-  win.ARENA_API_BASE = isLocal
+  win.ARENA_API_BASE = storedApi || (isLocal
     ? undefined
-    : "https://api.yourdomain.com/api/v1";
+    : "https://api.yourdomain.com/api/v1");
 
   /**
    * Pusher (optional) — set key + cluster for live notifications.

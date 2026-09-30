@@ -1,6 +1,7 @@
-<?php
-// Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
-// SPDX-License-Identifier: LicenseRef-Proprietary
+{{--
+  Copyright (c) 2026 MD RAIYAN IBNE KAMAL — https://github.com/raiyanibnekamal
+  SPDX-License-Identifier: LicenseRef-Proprietary
+--}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>

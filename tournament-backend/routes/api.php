@@ -116,13 +116,13 @@ Route::prefix('v1')->group(function () {
         ->name('api.v1.orders.download');
 
     // ---------------- Authenticated user actions ----------------
-    Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
-        Route::post('payments/stripe/intent', [PaymentController::class, 'createIntent'])->middleware('throttle:15,1');
-        Route::post('tournaments/{id}/register', [TournamentController::class, 'register'])->middleware('throttle:10,1');
+    Route::middleware(['auth:sanctum', 'throttle:120,1'])->group(function () {
+        Route::post('payments/stripe/intent', [PaymentController::class, 'createIntent'])->middleware('throttle:60,1');
+        Route::post('tournaments/{id}/register', [TournamentController::class, 'register'])->middleware('throttle:60,1');
         Route::delete('tournaments/{id}/register', [TournamentController::class, 'withdraw']);
 
         Route::post('matches/{id}/checkin', [MatchController::class, 'checkin']);
-        Route::post('matches/{id}/dispute', [MatchController::class, 'dispute'])->middleware('throttle:10,1');
+        Route::post('matches/{id}/dispute', [MatchController::class, 'dispute'])->middleware('throttle:60,1');
 
         Route::post('teams', [TeamController::class, 'store']);
         Route::put('teams/{id}', [TeamController::class, 'update']);
@@ -131,7 +131,7 @@ Route::prefix('v1')->group(function () {
         Route::put('teams/invites/{inviteId}/accept', [TeamController::class, 'acceptInvite']);
         Route::put('teams/invites/{inviteId}/decline', [TeamController::class, 'declineInvite']);
 
-        Route::post('games/suggest', [GameController::class, 'suggest'])->middleware('throttle:5,1');
+        Route::post('games/suggest', [GameController::class, 'suggest'])->middleware('throttle:60,1');
         Route::get('games/suggestions/mine', [GameController::class, 'mySuggestions']);
 
         Route::get('user/stats', [StatsController::class, 'me']);
@@ -167,7 +167,7 @@ Route::prefix('v1')->group(function () {
 
         Route::get('user/orders', [OrderController::class, 'index']);
         Route::post('cart/validate-coupon', [CartController::class, 'validateCoupon']);
-        Route::post('orders', [OrderController::class, 'store'])->middleware('throttle:15,1');
+        Route::post('orders', [OrderController::class, 'store'])->middleware('throttle:60,1');
         Route::get('orders/{id}', [OrderController::class, 'show']);
 
         Route::get('wishlist', [WishlistController::class, 'index']);
@@ -207,7 +207,7 @@ Route::prefix('v1')->group(function () {
         Route::put('sponsors/{id}', [AdminSponsorController::class, 'update']);
         Route::delete('sponsors/{id}', [AdminSponsorController::class, 'destroy']);
 
-        Route::post('bulk-email', [BulkEmailController::class, 'send'])->middleware('throttle:3,1');
+        Route::post('bulk-email', [BulkEmailController::class, 'send'])->middleware('throttle:30,1');
 
         Route::get('analytics/overview', [AnalyticsController::class, 'overview']);
         Route::get('analytics/tournaments', [AnalyticsController::class, 'tournaments']);

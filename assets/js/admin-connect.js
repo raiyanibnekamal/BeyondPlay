@@ -373,7 +373,7 @@
             esc(t.format) +
             '</td><td><a href="tournament-edit.html?id=' +
             t.id +
-            '">Edit</a></td></tr>"
+            '">Edit</a></td></tr>'
           );
         })
         .join("");
@@ -407,7 +407,7 @@
             esc(m.status) +
             '</td><td><a href="match-edit.html?id=' +
             m.id +
-            '">Edit</a></td></tr>"
+            '">Edit</a></td></tr>'
           );
         })
         .join("");
@@ -441,7 +441,7 @@
             esc(d.status) +
             '</td><td><button type="button" class="arena-admin-btn arena-admin-btn-sm arena-resolve-dispute" data-id="' +
             d.id +
-            '">Resolve</button></td></tr>"
+            '">Resolve</button></td></tr>'
           );
         })
         .join("");
@@ -504,7 +504,7 @@
             s.id +
             '">Approve</button> <button type="button" class="arena-reject-sug" data-id="' +
             s.id +
-            '">Reject</button></td></tr>"
+            '">Reject</button></td></tr>'
           );
         })
         .join("");
@@ -575,7 +575,7 @@
             '">Toggle</button> ' +
             '<button type="button" class="arena-admin-btn arena-admin-btn-danger arena-admin-btn-sm arena-coupon-del" data-id="' +
             c.id +
-            '">Delete</button></td></tr>"
+            '">Delete</button></td></tr>'
           );
         })
         .join("");
@@ -669,7 +669,7 @@
               : '<span class="arena-admin-badge arena-admin-badge-active">Unread</span>') +
             '</td><td><button type="button" class="arena-admin-btn arena-admin-btn-sm arena-msg-read" data-id="' +
             m.id +
-            '">Mark read</button></td></tr>"
+            '">Mark read</button></td></tr>'
           );
         })
         .join("");

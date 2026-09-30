@@ -47,6 +47,27 @@ class DatabaseSeeder extends Seeder
             'bio' => 'BeyondPlay platform administrator.',
         ], $adminRole);
 
+        // Support both admin@BeyondPlay.gg and admin@arena.gg for dev/test compatibility
+        $this->seedUser([
+            'email' => 'admin@arena.gg',
+            'username' => 'ArenaAdmin_Dev',
+            'password' => env('APP_ENV') === 'production' ? $adminPassword : 'password',
+            'role' => 'admin',
+            'country' => 'US',
+            'bio' => 'Arena platform administrator.',
+        ], $adminRole);
+
+        // Support player@arena.gg for dev/test compatibility
+        $this->seedUser([
+            'email' => 'player@arena.gg',
+            'username' => 'ShadowStrike',
+            'password' => env('APP_ENV') === 'production' ? $playerPassword : 'password',
+            'role' => 'user',
+            'country' => 'US',
+            'gaming_id' => 'ShadowStrike#1337',
+            'bio' => 'Competitive Arena tournament player.',
+        ], $userRole);
+
         $players = [];
         $playerDefs = [
             ['email' => 'tenz.fan@BeyondPlay.gg', 'username' => 'TenZFan_BD', 'country' => 'BD', 'gaming_id' => 'TenZFan#4821', 'bio' => 'Immortal-ranked Valorant player. VCT viewer and weekend competitor.'],
@@ -601,7 +622,18 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        Coupon::where('code', 'ARENA10')->delete();
+        Coupon::updateOrCreate(
+            ['code' => 'ARENA10'],
+            [
+                'type' => 'percentage',
+                'value' => 10,
+                'min_order_amount' => 10,
+                'max_uses' => 500,
+                'used_count' => 0,
+                'expires_at' => now()->addYear(),
+                'status' => 'active',
+            ]
+        );
     }
 
     protected function seedAchievements(): void

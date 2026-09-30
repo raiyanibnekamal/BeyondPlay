@@ -194,7 +194,7 @@
             esc(price) +
             '" data-image="' +
             esc(img) +
-            '"><i class="fal fa-shopping-cart"></i></button></td></tr>"
+            '"><i class="fal fa-shopping-cart"></i></button></td></tr>'
           );
         })
         .join("");

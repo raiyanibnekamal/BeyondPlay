@@ -1,5 +1,5 @@
 # BeyondPlay Arena Laravel Backend Dockerfile for Render / Cloud
-FROM php:8.2-cli-alpine
+FROM php:8.4-cli-alpine
 
 RUN apk add --no-cache \
     curl \
@@ -9,6 +9,7 @@ RUN apk add --no-cache \
     libzip-dev \
     sqlite-dev \
     oniguruma-dev \
+    linux-headers \
     && docker-php-ext-install \
     bcmath \
     mbstring \
@@ -28,7 +29,7 @@ RUN if [ -d "/app/tournament-backend" ] && [ -f "/app/tournament-backend/compose
         cp -rf /app/tournament-backend/. /app/ && rm -rf /app/tournament-backend; \
     fi
 
-RUN composer install --no-dev --optimize-autoloader --no-interaction \
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs \
     && chmod +x /app/entrypoint.sh
 
 EXPOSE 8000

@@ -26,7 +26,7 @@
   /** @type {string|undefined} Replace with your production API (required on live domain). */
   win.ARENA_API_BASE = storedApi || (isLocal
     ? undefined
-    : "https://api.yourdomain.com/api/v1");
+    : "https://beyondplay-nxv2.onrender.com/api/v1");
 
   /**
    * Pusher (optional) — set key + cluster for live notifications.

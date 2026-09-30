@@ -21,7 +21,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
-COPY . /app
+COPY . /app/
+
+# Automatically detect if built from repo root or tournament-backend folder
+RUN if [ -d "/app/tournament-backend" ] && [ -f "/app/tournament-backend/composer.json" ]; then \
+        cp -rf /app/tournament-backend/. /app/ && rm -rf /app/tournament-backend; \
+    fi
 
 RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && chmod +x /app/entrypoint.sh

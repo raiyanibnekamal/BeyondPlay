@@ -3,7 +3,7 @@
 [![Frontend](https://img.shields.io/badge/Frontend-Vercel%20Ready-black?logo=vercel&logoColor=white)](https://vercel.com/)
 [![Backend](https://img.shields.io/badge/Backend-Laravel%2012%20API-FF2D20?logo=laravel&logoColor=white)](https://laravel.com/)
 [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php&logoColor=white)](https://php.net/)
-[![Database](https://img.shields.io/badge/Database-SQLite%20%7C%20MySQL%208-4479A1?logo=mysql&logoColor=white)](https://mysql.com/)
+[![Database](https://img.shields.io/badge/Database-PostgreSQL%20%7C%20MySQL%20%7C%20SQLite-336791?logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 [![Auth](https://img.shields.io/badge/Auth-Laravel%20Sanctum-red)](https://laravel.com/docs/sanctum)
 [![Docker](https://img.shields.io/badge/Deployment-Docker%20%28Render%20%7C%20Railway%29-2496ED?logo=docker&logoColor=white)](tournament-backend/Dockerfile)
 [![Tests](https://img.shields.io/badge/Tests-100%25%20Passing%20%280%20Bugs%29-brightgreen)](tournament-backend/tests)
@@ -13,7 +13,7 @@
 
 Platform administrators and tournament organizers command an integrated 20-page management console covering automated tournament bracket generation, match scoring, dispute resolutions, catalog and order fulfillment, coupon campaigns, bulk email dispatch, and live gaming telemetry.
 
-- **⚡ Tech Stack:** Modern Semantic HTML5, CSS3 (Arena UI & Theme), Vanilla JavaScript ES6+, Laravel 12 API, Laravel Sanctum, Spatie Roles & Permissions, SQLite / MySQL 8, Docker Containerization.
+- **⚡ Tech Stack:** Modern Semantic HTML5, CSS3 (Arena UI & Theme), Vanilla JavaScript ES6+, Laravel 12 API, Laravel Sanctum, Spatie Roles & Permissions, PostgreSQL / MySQL / SQLite, Docker Containerization.
 - **📱 Application Scale:** 40+ Public & Gamer pages, 20 Dedicated Admin Console pages, 45+ RESTful API endpoints.
 - **🧪 Quality & Verification:** 100% Passing Test Suites (PHPUnit Unit/Feature Tests, E2E Journey, Demo User Flow, Step 17–20 Integration tests, Zero Browser Console Errors).
 - **📚 Documentation:** [Developer Guide](DEVELOPER_GUIDE.md) | [Technical Architecture Spec](ARENA_SPEC.md) | [Production Deployment](DEPLOY.md) | [Security Standards](PRODUCTION_SECURITY.md) | [Project Inventory](ARENA_PROJECT_INVENTORY.md) | [Changelog](CHANGELOG.md)
@@ -130,10 +130,11 @@ Backend configuration is managed via `tournament-backend/.env`. A production tem
 | `APP_KEY` | *(Generated)* | *(Generated base64)* | 32-byte encryption key (`php artisan key:generate`) |
 | `APP_DEBUG` | `true` | `false` | Detailed error reporting (MUST be false in prod) |
 | `APP_URL` | `http://127.0.0.1:8000` | `https://beyondplay-backend.onrender.com` | Base URL of Laravel API |
-| `DB_CONNECTION` | `sqlite` | `sqlite` or `mysql` | Database driver (`sqlite` for zero-config, `mysql` for scaling) |
-| `DB_DATABASE` | `.../database.sqlite` | `tournament_db` | Path to SQLite file or MySQL database name |
+| `DB_CONNECTION` | `sqlite` | `pgsql` (Recommended) or `sqlite` | Database driver (`pgsql` for cloud production, `sqlite` for local dev) |
+| `DATABASE_URL` | *(none)* | `postgresql://user:pass@host/db?sslmode=require` | Full PostgreSQL connection URI (Neon.tech, Supabase, Render) |
+| `DB_DATABASE` | `.../database.sqlite` | `neondb` or `tournament_db` | Database name (if not using DATABASE_URL) |
 | `FRONTEND_URL` | `http://127.0.0.1:5500` | `https://beyondplay.vercel.app` | Frontend origin for CORS and password reset links |
-| `CORS_ALLOWED_ORIGINS` | `http://127.0.0.1:5500,http://localhost:5500` | `https://beyondplay.vercel.app` | Allowed CORS origins for browser fetch |
+| `CORS_ALLOWED_ORIGINS` | `http://127.0.0.1:5500,http://localhost:5500` | `https://beyondplay.vercel.app` | Allowed CORS origins (regex `*.vercel.app` is pre-allowed) |
 | `ADMIN_SEED_PASSWORD` | `Arena@2026!` | *(Strong password)* | Initial seeded password for admin accounts |
 | `PLAYER_SEED_PASSWORD`| `Arena@2026!` | *(Strong password)* | Initial seeded password for demo player accounts |
 | `CACHE_STORE` | `file` | `file` or `redis` | Cache storage driver |
@@ -303,7 +304,7 @@ Deploy BeyondPlay live in minutes with zero hosting costs:
 3. Configure the service:
    - **Name:** `beyondplay-backend`
    - **Language:** `Docker`
-   - **Root Directory:** *(leave blank)*
+   - **Root Directory:** *(leave blank / default)*
    - **Dockerfile Path:** `tournament-backend/Dockerfile`
    - **Instance Type:** `Free ($0/month)`
 4. Add Environment Variables:
@@ -311,21 +312,25 @@ Deploy BeyondPlay live in minutes with zero hosting costs:
    - `APP_ENV` = `production`
    - `APP_DEBUG` = `false`
    - `APP_KEY` = `base64:XG8o2J+Kz66jU2+z3Wn6nN69vY0L148ZqP03901n5w8=`
-   - `DB_CONNECTION` = `sqlite`
-   - `FRONTEND_URL` = `*`
-   - `CORS_ALLOWED_ORIGINS` = `*`
+   - `DB_CONNECTION` = `pgsql` *(or `sqlite` for simple zero-config demo)*
+   - `DATABASE_URL` = *(Optional: paste your free [Neon.tech](https://neon.tech) or Render Postgres connection string for permanent data retention)*
+   - `FRONTEND_URL` = `https://your-app.vercel.app`
+   - `CORS_ALLOWED_ORIGINS` = `https://your-app.vercel.app`
    - `ADMIN_SEED_PASSWORD` = `Arena@2026!`
    - `PLAYER_SEED_PASSWORD` = `Arena@2026!`
-5. Click **Deploy Web Service**. You will receive your live API URL (e.g., `https://beyondplay-backend.onrender.com`).
+5. Click **Deploy Web Service**. You will receive your live API URL (e.g., `https://beyondplay-nxv2.onrender.com`).
 
 ### 2. Deploy Frontend to Vercel (100% Free)
-1. Go to [vercel.com](https://vercel.com) and import the `BeyondPlay` repository.
-2. Keep the root directory as `./` and click **Deploy**.
-3. Once live, open your Vercel URL with the API query parameter once to automatically link the backend:
+1. Go to [vercel.com](https://vercel.com) and click **Add New...** → **Project**, then import `BeyondPlay`.
+2. **Crucial Project Settings:**
+   - **Root Directory:** `./` *(leave empty/root, do NOT select `tournament-backend`)*
+   - **Framework Preset:** `Other` *(Static HTML/CSS/JS with zero build command)*
+3. Click **Deploy**. Vercel will bundle the frontend assets and publish in seconds.
+4. Once live, open your Vercel URL with the API query parameter once to link the backend:
    ```
-   https://your-app.vercel.app/?api_base=https://beyondplay-backend.onrender.com/api/v1
+   https://your-app.vercel.app/?api_base=https://beyondplay-nxv2.onrender.com/api/v1
    ```
-   *Your live application is now fully connected and operational!*
+   *Your live application is now fully connected with cross-domain Bearer auth and operational!*
 
 ---
 

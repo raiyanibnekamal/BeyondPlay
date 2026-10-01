@@ -8,6 +8,7 @@ RUN apk add --no-cache \
     libxml2-dev \
     libzip-dev \
     sqlite-dev \
+    postgresql-dev \
     oniguruma-dev \
     linux-headers \
     && docker-php-ext-install \
@@ -15,6 +16,7 @@ RUN apk add --no-cache \
     mbstring \
     pdo \
     pdo_mysql \
+    pdo_pgsql \
     pdo_sqlite \
     zip
 

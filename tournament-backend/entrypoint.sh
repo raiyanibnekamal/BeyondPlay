@@ -20,6 +20,8 @@ if [ "$DB_CONNECTION" = "sqlite" ] || [ -z "$DB_CONNECTION" ]; then
     fi
 else
     php artisan migrate --force
+    # Seed default tournaments and admin user if fresh
+    php artisan db:seed --force || true
 fi
 
 php artisan storage:link || true

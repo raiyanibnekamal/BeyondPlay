@@ -42,7 +42,10 @@
     }
     if (u.charAt(0) === "/" || u.indexOf("assets/") === 0) {
       if (u.indexOf("/storage/") === 0 && typeof global.location !== "undefined") {
-        return global.location.protocol + "//" + global.location.hostname + ":8000" + escHtml(u);
+        var baseOrigin = (global.location.hostname === "localhost" || global.location.hostname === "127.0.0.1")
+          ? global.location.protocol + "//" + global.location.hostname + ":8000"
+          : "https://beyondplay-nxv2.onrender.com";
+        return baseOrigin + escHtml(u);
       }
       return escHtml(u);
     }

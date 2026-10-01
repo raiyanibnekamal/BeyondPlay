@@ -36,10 +36,11 @@
   win.ARENA_PUSHER_CLUSTER = "mt1";
 
   /**
-   * HttpOnly cookie auth (set true when frontend + API share parent domain & HTTPS).
-   * Local dev keeps Bearer tokens in memory only (not localStorage when cookie mode).
+   * HttpOnly cookie auth (set true only when frontend + API share parent domain & HTTPS).
+   * For cross-domain deployments (e.g. Vercel frontend + Render API), set to false so
+   * Bearer tokens in Authorization header and localStorage are used reliably.
    */
-  win.ARENA_USE_COOKIE_AUTH = !isLocal && !!win.ARENA_API_BASE;
+  win.ARENA_USE_COOKIE_AUTH = false;
 
   if (!isLocal) {
     var api = win.ARENA_API_BASE || "";

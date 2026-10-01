@@ -385,3 +385,44 @@ section,
 #hero.hero-1 .hero-style1 {
   padding-top: 0;
 }
+
+/* --- Layout & Media Bounds: Prevent oversized blowout on any screen or network state --- */
+img, svg, video, canvas {
+  max-width: 100%;
+}
+.hero-shape-area {
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.hero-bg-shape {
+  max-width: 100%;
+  overflow: hidden;
+}
+.hero-bg-shape svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+.hero-img1,
+.hero-img2 {
+  max-width: 48%;
+}
+.hero-img1 img,
+.hero-img2 img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+.tournament-card-img img {
+  max-width: 100%;
+  height: auto;
+}
+.game-card-img img {
+  max-width: 100%;
+  height: auto;
+}
+.th-hero-wrapper .hero-title {
+  font-size: clamp(2rem, 5vw, 4.2rem) !important;
+  line-height: 1.15 !important;
+}

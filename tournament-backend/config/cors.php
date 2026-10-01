@@ -12,18 +12,19 @@ if ($frontend) {
 }
 $parts = array_values(array_unique(array_filter($parts)));
 
-// Production: deny cross-origin when env vars are unset. Local dev: allow default frontend ports.
-if ($parts === [] && env('APP_ENV', 'production') === 'local') {
+// Production: allow Vercel domains and configured frontend. Local dev: allow default frontend ports.
+if ($parts === []) {
     $parts = [
         'http://127.0.0.1:5500',
         'http://localhost:5500',
         'http://127.0.0.1:3000',
         'http://localhost:3000',
+        'https://beyond-play-tournament-backend.vercel.app',
     ];
 }
 
 $allowedOrigins = $parts;
-$supportsCredentials = $parts !== [];
+$supportsCredentials = true;
 
 return [
 
@@ -33,13 +34,15 @@ return [
 
     'allowed_origins' => $allowedOrigins,
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => [
+        '#^https?://.*\.vercel\.app$#',
+    ],
 
     'allowed_headers' => ['*'],
 
     'exposed_headers' => [],
 
-    'max_age' => 0,
+    'max_age' => 86400,
 
     'supports_credentials' => $supportsCredentials,
 

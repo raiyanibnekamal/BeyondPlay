@@ -1,0 +1,9 @@
+tournament-backend/
+.git
+.github
+*.ps1
+*.bat
+scripts/
+router.php
+serve-*.bat
+serve-*.ps1

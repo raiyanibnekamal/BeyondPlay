@@ -12,7 +12,10 @@
       return String(global.ARENA_API_BASE).replace(/\/$/, "");
     }
     if (typeof global.location !== "undefined" && /^https?:$/i.test(global.location.protocol)) {
-      return global.location.protocol + "//" + global.location.hostname + ":8000/api/v1";
+      if (global.location.hostname === "localhost" || global.location.hostname === "127.0.0.1") {
+        return global.location.protocol + "//" + global.location.hostname + ":8000/api/v1";
+      }
+      return "https://beyondplay-nxv2.onrender.com/api/v1";
     }
     return "http://127.0.0.1:8000/api/v1";
   }

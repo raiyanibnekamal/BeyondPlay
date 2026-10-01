@@ -12,7 +12,8 @@ id_rsa.pub
 
 # Dependencies
 node_modules/
-vendor/
+/tournament-backend/vendor/
+!assets/js/vendor/
 
 # OS / editor
 .DS_Store
